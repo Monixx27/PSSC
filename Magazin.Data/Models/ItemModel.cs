@@ -8,7 +8,7 @@ namespace Magazin.Data.Models
 {
     public class ItemModel
     {
-        public int ItemId { get; set; }
+        public String ItemId { get; set; }
         public String Name { get; set; }
         public int Quantity { get; set; }
         public decimal? Price { get; set; }

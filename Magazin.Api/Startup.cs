@@ -13,6 +13,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Magazin.Data;
 using Microsoft.EntityFrameworkCore;
+using Magazin.Data.IRepositories;
+using Magazin.Data.Repositories;
+using Magazin.Domain;
 
 namespace Magazin.Api
 {
@@ -30,6 +33,15 @@ namespace Magazin.Api
         {
             services.AddDbContext<MagazinContext>(options =>
                 options.UseSqlServer("Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Magazin;Integrated Security=SSPI; TrustServerCertificate = True; ApplicationIntent = ReadWrite", b => b.MigrationsAssembly("Magazin.Api")));
+
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<IFacturaRepository, FacturaRepository>();
+            services.AddTransient<IDateLivrareRepository, DateLivrareRepository>();
+            services.AddTransient<PublishCartWorkflow>();
+            services.AddTransient<PublishFacturaWorkflow>();
+            //services.AddSingleton<IEventSender, ServiceBusTopicEventSender>();
+
+            //services.AddTransient<PublishGradeWorkflow>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

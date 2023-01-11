@@ -21,8 +21,13 @@ namespace Magazin.Api.Migrations
 
             modelBuilder.Entity("Magazin.Data.Models.DateLivrareModel", b =>
                 {
+                    b.Property<int>("FacturaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("AWB")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Adresa")
                         .HasColumnType("nvarchar(max)");
@@ -33,22 +38,19 @@ namespace Magazin.Api.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FacturaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Furnizor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Scadenta")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Sediu")
-                        .HasColumnType("int");
+                    b.Property<string>("Sediu")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TipLivrare")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AWB");
+                    b.HasKey("FacturaId");
 
                     b.ToTable("DateLivrare");
                 });
@@ -56,27 +58,24 @@ namespace Magazin.Api.Migrations
             modelBuilder.Entity("Magazin.Data.Models.FacturaModel", b =>
                 {
                     b.Property<int>("FacturaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Item")
                         .HasColumnType("int");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.HasKey("FacturaId");
 
                     b.ToTable("Facturi");
                 });
 
             modelBuilder.Entity("Magazin.Data.Models.ItemModel", b =>
                 {
-                    b.Property<int>("ItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("ItemId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

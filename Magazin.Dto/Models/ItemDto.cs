@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Magazin.Data.Models
+namespace Magazin.Dto.Models
 {
-    public class FacturaModel
+    public record ItemDto
     {
-        public int FacturaId { get; set; }
+        public String ItemId { get; set; }
+        public String Name { get; set; }
         public int Quantity { get; set; }
-        public String Item { get; set; }
         public decimal? Price { get; set; }
-
+        public decimal? Total { get; set; }
     }
 }

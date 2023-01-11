@@ -18,8 +18,8 @@ namespace Magazin.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ItemModel>().ToTable("Items").HasKey(s => s.ItemId);
-            modelBuilder.Entity<FacturaModel>().ToTable("Facturi").HasKey(s => s.FacturaId);
-            modelBuilder.Entity<DateLivrareModel>().ToTable("DateLivrare").HasKey(s => s.AWB);
+            modelBuilder.Entity<FacturaModel>().ToTable("Facturi").HasNoKey();
+            modelBuilder.Entity<DateLivrareModel>().ToTable("DateLivrare").HasKey(s => s.FacturaId);
         }
     }
 }

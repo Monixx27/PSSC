@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Magazin.Data.Models
 {
-    public class FacturaModel
+    public class FacturaObjModel
     {
         public int FacturaId { get; set; }
-        public int Quantity { get; set; }
-        public String Item { get; set; }
-        public decimal? Price { get; set; }
-
+        public List<ItemModel> Items { get; set; }
     }
 }

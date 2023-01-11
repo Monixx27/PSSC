@@ -13,7 +13,7 @@ namespace Magazin.Data.Models
         public String TipLivrare { get; set; }
         public String AWB { get; set; }
         public String Furnizor { get; set; }
-        public int Sediu { get; set; }
+        public String Sediu { get; set; }
         public string Cumparator { get; set; }
         public DateTime Data { get; set; }
         public DateTime Scadenta { get; set; }

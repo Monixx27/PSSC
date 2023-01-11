@@ -11,8 +11,9 @@ namespace Magazin.Domain.Models
 {
     public class Item
     {
-        private static readonly Regex ValidPattern = new("^i[0-9]{3}$");
-        public Item(int ItemId, String Name, int Quantity, decimal? Price)
+        public const string Pattern = "^i[0-9]{3}$";
+        private static readonly Regex ValidPattern = new(Pattern);
+        public Item(string ItemId, String Name, int Quantity, decimal? Price)
         {
             this.ItemId = ItemId;
             this.Name = Name;
@@ -20,7 +21,7 @@ namespace Magazin.Domain.Models
             this.Price = Price;
         }
 
-        public int ItemId { get; }
+        public string ItemId { get; }
         public string Name { get; }
         public int Quantity { get; }
         public decimal? Price { get; }
@@ -30,14 +31,14 @@ namespace Magazin.Domain.Models
             return $"Id:{ItemId}, Name:{Name}, Quantity:{Quantity}, Price:{Price}";
         }
 
-        public static Option<decimal> TryParseQty(string quantity, decimal max_qty)
+        public static Option<int> TryParseQty(int quantity, int max_qty)
         {
-            if (decimal.TryParse(quantity, out decimal numericQty) && IsValid(numericQty))
+            if (IsValid(quantity))
             {
-                if (numericQty > max_qty)
-                    return Some<decimal>(max_qty);
+                if (quantity > max_qty)
+                    return Some<int>(max_qty);
                 else
-                    return Some<decimal>(numericQty);
+                    return Some<int>(quantity);
             }
             else
             {
